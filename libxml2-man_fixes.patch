@@ -1,5 +1,5 @@
---- libxml2-2.4.5/libxml.4~.	Sat Sep  1 04:35:08 2001
-+++ libxml2-2.4.5/libxml.4	Wed Sep 19 19:59:37 2001
+--- libxml2-2.4.5/libxml.3~.	Sat Sep  1 04:35:08 2001
++++ libxml2-2.4.5/libxml.3	Wed Sep 19 19:59:37 2001
 @@ -48,14 +48,14 @@
  library exports Push and Pull type parser interfaces for both XML and 
  .IR html . 
