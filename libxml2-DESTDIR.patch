@@ -1,6 +1,6 @@
-diff -urN libxml2-2.5.0.orig/python/Makefile.am libxml2-2.5.0/python/Makefile.am
---- libxml2-2.5.0.orig/python/Makefile.am	Mon Jan  6 13:28:32 2003
-+++ libxml2-2.5.0/python/Makefile.am	Mon Jan  6 20:11:40 2003
+diff -urN libxml2-2.5.8.orig/python/Makefile.am libxml2-2.5.8/python/Makefile.am
+--- libxml2-2.5.8.orig/python/Makefile.am	Mon Jul  7 09:25:20 2003
++++ libxml2-2.5.8/python/Makefile.am	Mon Jul  7 09:27:14 2003
 @@ -23,7 +23,7 @@
  	libxml2-python-api.xml	\
  	$(DOCS)
@@ -10,22 +10,22 @@ diff -urN libxml2-2.5.0.orig/python/Makefile.am libxml2-2.5.0/python/Makefile.am
  
  if WITH_PYTHON
  mylibs = \
-@@ -33,6 +33,7 @@
+@@ -32,6 +32,7 @@
+ all-local:	libxml2.py
  
- pythondir = $(libdir)/python${PYTHON_VERSION}/site-packages
  python_LTLIBRARIES = libxml2mod.la
 +python_DATA = libxml2.py
  
  libxml2mod_la_SOURCES = libxml.c types.c libxml2-py.c
  libxml2mod_la_LIBADD = $(mylibs)
-@@ -40,14 +41,6 @@
+@@ -39,14 +40,6 @@
  libxml2.py: $(srcdir)/libxml.py $(srcdir)/libxml2class.py
  	cat $(srcdir)/libxml.py $(srcdir)/libxml2class.py > libxml2.py
  
 -install-data-local:
--	$(mkinstalldirs) $(DESTDIR)$(libdir)/python${PYTHON_VERSION}/site-packages
--	@INSTALL@ -m 0644 libxml2.py $(DESTDIR)$(libdir)/python${PYTHON_VERSION}/site-packages
--	@INSTALL@ -m 0644 drv_libxml2.py $(DESTDIR)$(libdir)/python${PYTHON_VERSION}/site-packages
+-	$(mkinstalldirs) $(DESTDIR)$(pythondir)
+-	@INSTALL@ -m 0644 libxml2.py $(DESTDIR)$(pythondir)
+-	@INSTALL@ -m 0644 drv_libxml2.py $(DESTDIR)$(pythondir)
 -	$(mkinstalldirs) $(DESTDIR)$(DOCS_DIR)
 -	@(for doc in $(DOCS) ; \
 -	   do @INSTALL@ -m 0644 $$doc $(DESTDIR)$(DOCS_DIR) ; done)
