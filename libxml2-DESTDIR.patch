@@ -1,6 +1,5 @@
-diff -urN libxml2-2.5.8.orig/python/Makefile.am libxml2-2.5.8/python/Makefile.am
---- libxml2-2.5.8.orig/python/Makefile.am	Mon Jul  7 09:25:20 2003
-+++ libxml2-2.5.8/python/Makefile.am	Mon Jul  7 09:27:14 2003
+--- libxml2-2.6.4/python/Makefile.am.orig	2003-12-21 12:01:40.000000000 +0100
++++ libxml2-2.6.4/python/Makefile.am	2003-12-26 19:42:40.933314784 +0100
 @@ -23,7 +23,7 @@
  	libxml2-python-api.xml	\
  	$(DOCS)
@@ -14,7 +13,7 @@ diff -urN libxml2-2.5.8.orig/python/Makefile.am libxml2-2.5.8/python/Makefile.am
  all-local:	libxml2.py
  
  python_LTLIBRARIES = libxml2mod.la
-+python_DATA = libxml2.py
++python_DATA = libxml2.py drv_libxml2.py
  
  libxml2mod_la_SOURCES = libxml.c types.c libxml2-py.c
  libxml2mod_la_LIBADD = $(mylibs)
@@ -25,7 +24,7 @@ diff -urN libxml2-2.5.8.orig/python/Makefile.am libxml2-2.5.8/python/Makefile.am
 -install-data-local:
 -	$(mkinstalldirs) $(DESTDIR)$(pythondir)
 -	@INSTALL@ -m 0644 libxml2.py $(DESTDIR)$(pythondir)
--	@INSTALL@ -m 0644 drv_libxml2.py $(DESTDIR)$(pythondir)
+-	@INSTALL@ -m 0644 $(srcdir)/drv_libxml2.py $(DESTDIR)$(pythondir)
 -	$(mkinstalldirs) $(DESTDIR)$(DOCS_DIR)
 -	@(for doc in $(DOCS) ; \
 -	   do @INSTALL@ -m 0644 $$doc $(DESTDIR)$(DOCS_DIR) ; done)
