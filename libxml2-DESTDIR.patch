@@ -1,0 +1,24 @@
+--- libxml2-2.4.24/python/Makefile.am~	Sat Aug 24 16:20:59 2002
++++ libxml2-2.4.24/python/Makefile.am	Sat Aug 24 16:20:59 2002
+@@ -32,6 +32,7 @@
+ 
+ pythondir = $(libdir)/python${PYTHON_VERSION}/site-packages
+ python_LTLIBRARIES = libxml2mod.la
++python_DATA = libxml2.py
+ 
+ libxml2mod_la_SOURCES = libxml.c types.c libxml2-py.c
+ libxml2mod_la_LIBADD = $(mylibs)
+@@ -39,13 +40,6 @@
+ libxml2.py: $(srcdir)/libxml.py libxml2class.py
+ 	cat $(srcdir)/libxml.py libxml2class.py > libxml2.py
+ 
+-install-data-local:
+-	$(mkinstalldirs) $(libdir)/python${PYTHON_VERSION}/site-packages
+-	@INSTALL@ -m 0644 libxml2.py $(libdir)/python${PYTHON_VERSION}/site-packages
+-	$(mkinstalldirs) $(DOCS_DIR)
+-	@(for doc in $(DOCS) ; \
+-	   do @INSTALL@ -m 0644 $$doc $(DOCS_DIR) ; done)
+-
+ GENERATE = generator.py
+ API_DESC = $(top_srcdir)/doc/libxml2-api.xml $(srcdir)/libxml2-python-api.xml
+ GENERATED= $(srcdir)/libxml2class.py \
