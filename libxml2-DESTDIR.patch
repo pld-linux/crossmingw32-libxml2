@@ -1,14 +1,5 @@
 --- libxml2-2.6.4/python/Makefile.am.orig	2003-12-21 12:01:40.000000000 +0100
 +++ libxml2-2.6.4/python/Makefile.am	2003-12-26 19:42:40.933314784 +0100
-@@ -23,7 +23,7 @@
- 	libxml2-python-api.xml	\
- 	$(DOCS)
- 
--libxml2mod_la_LDFLAGS = @CYGWIN_EXTRA_LDFLAGS@ @WIN32_EXTRA_LDFLAGS@ -module -avoid-version -L$(top_builddir)/.libs
-+libxml2mod_la_LDFLAGS = @CYGWIN_EXTRA_LDFLAGS@ @WIN32_EXTRA_LDFLAGS@ -module -avoid-version 
- 
- if WITH_PYTHON
- mylibs = \
 @@ -32,6 +32,7 @@
  all-local:	libxml2.py
  
