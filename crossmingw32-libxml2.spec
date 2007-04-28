@@ -2,13 +2,13 @@
 Summary:	libXML library - cross Mingw32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla Mingw32
 Name:		crossmingw32-%{_realname}
-Version:	2.6.27
+Version:	2.6.28
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
 Source0:	ftp://xmlsoft.org/libxml2/%{_realname}-%{version}.tar.gz
-# Source0-md5:	f5806f5059ef7bd4d3fcf36cf116d1ef
+# Source0-md5:	ddf3c369964980a238fad0b6ad40532c
 Patch0:		%{_realname}-man_fixes.patch
 Patch1:		%{_realname}-open.gz.patch
 Patch2:		%{_realname}-DESTDIR.patch
