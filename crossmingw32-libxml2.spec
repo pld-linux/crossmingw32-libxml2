@@ -1,17 +1,17 @@
-%define		_realname   libxml2
+%define		realname   libxml2
 Summary:	libXML library - cross Mingw32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla Mingw32
-Name:		crossmingw32-%{_realname}
-Version:	2.6.28
+Name:		crossmingw32-%{realname}
+Version:	2.6.29
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
-Source0:	ftp://xmlsoft.org/libxml2/%{_realname}-%{version}.tar.gz
-# Source0-md5:	ddf3c369964980a238fad0b6ad40532c
-Patch0:		%{_realname}-man_fixes.patch
-Patch1:		%{_realname}-open.gz.patch
-Patch2:		%{_realname}-DESTDIR.patch
+Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
+# Source0-md5:	8b99b6e8b08e838438d9e6b639d79ebd
+Patch0:		%{realname}-man_fixes.patch
+Patch1:		%{realname}-open.gz.patch
+Patch2:		%{realname}-DESTDIR.patch
 URL:		http://xmlsoft.org/
 BuildRequires:	autoconf >= 2.2
 BuildRequires:	automake
@@ -71,7 +71,7 @@ DLL libxml2 library for Windows.
 Biblioteka DLL libxml2 dla Windows.
 
 %prep
-%setup -q -n %{_realname}-%{version}
+%setup -q -n %{realname}-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
