@@ -26,7 +26,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target			i386-mingw32
 %define		target_platform 	i386-pc-mingw32
-%define		arch			%{_prefix}/%{target}
 
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
@@ -77,7 +76,7 @@ Biblioteka DLL libxml2 dla Windows.
 %patch2 -p1
 
 %build
-export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
