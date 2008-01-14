@@ -1,16 +1,16 @@
---- libxml2-2.6.4/python/Makefile.am.orig	2003-12-21 12:01:40.000000000 +0100
-+++ libxml2-2.6.4/python/Makefile.am	2003-12-26 19:42:40.933314784 +0100
-@@ -32,6 +32,7 @@
+--- libxml2-2.6.31/python/Makefile.am.orig	2008-01-11 08:22:32.000000000 +0100
++++ libxml2-2.6.31/python/Makefile.am	2008-01-14 00:00:56.657955544 +0100
+@@ -34,6 +34,7 @@
  all-local:	libxml2.py
  
  python_LTLIBRARIES = libxml2mod.la
 +python_DATA = libxml2.py drv_libxml2.py
  
  libxml2mod_la_SOURCES = libxml.c types.c libxml2-py.c
- libxml2mod_la_LIBADD = $(mylibs)
-@@ -39,14 +40,6 @@
- libxml2.py: $(srcdir)/libxml.py $(srcdir)/libxml2class.py
- 	cat $(srcdir)/libxml.py $(srcdir)/libxml2class.py > libxml2.py
+ libxml2mod_la_LIBADD = $(mylibs) @CYGWIN_EXTRA_PYTHON_LIBADD@
+@@ -41,14 +42,6 @@
+ libxml2.py: $(srcdir)/libxml.py libxml2class.py
+ 	cat $(srcdir)/libxml.py libxml2class.py > libxml2.py
  
 -install-data-local:
 -	$(mkinstalldirs) $(DESTDIR)$(pythondir)
@@ -20,6 +20,6 @@
 -	@(for doc in $(DOCS) ; \
 -	   do @INSTALL@ -m 0644 $$doc $(DESTDIR)$(DOCS_DIR) ; done)
 -
- GENERATE = generator.py
- API_DESC = $(top_srcdir)/doc/libxml2-api.xml $(srcdir)/libxml2-python-api.xml
- GENERATED= $(srcdir)/libxml2class.py \
+ uninstall-local:
+ 	@(for doc in $(DOCS) ; \
+ 	   do rm $(DESTDIR)$(DOCS_DIR)/`basename $$doc` ; done)
