@@ -1,0 +1,2 @@
+- updated to 2.6.31 (security fix [CVE-2007-6284])
+- force %{_lib}-independent libdir
