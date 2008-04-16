@@ -8,18 +8,4 @@
  
  libxml2mod_la_SOURCES = libxml.c types.c libxml2-py.c
  libxml2mod_la_LIBADD = $(mylibs) @CYGWIN_EXTRA_PYTHON_LIBADD@
-@@ -41,14 +42,6 @@
- libxml2.py: $(srcdir)/libxml.py libxml2class.py
- 	cat $(srcdir)/libxml.py libxml2class.py > libxml2.py
- 
--install-data-local:
--	$(mkinstalldirs) $(DESTDIR)$(pythondir)
--	@INSTALL@ -m 0644 libxml2.py $(DESTDIR)$(pythondir)
--	@INSTALL@ -m 0644 $(srcdir)/drv_libxml2.py $(DESTDIR)$(pythondir)
--	$(mkinstalldirs) $(DESTDIR)$(DOCS_DIR)
--	@(for doc in $(DOCS) ; \
--	   do @INSTALL@ -m 0644 $$doc $(DESTDIR)$(DOCS_DIR) ; done)
--
- uninstall-local:
- 	@(for doc in $(DOCS) ; \
- 	   do rm $(DESTDIR)$(DOCS_DIR)/`basename $$doc` ; done)
+
