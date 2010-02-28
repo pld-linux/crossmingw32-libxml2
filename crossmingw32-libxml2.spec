@@ -2,24 +2,26 @@
 Summary:	libXML library - cross Mingw32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla Mingw32
 Name:		crossmingw32-%{realname}
-Version:	2.6.32
+Version:	2.7.6
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
 Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
-# Source0-md5:	2621d322c16f0257e30f0ff2b13384de
-Patch0:		%{realname}-man_fixes.patch
-Patch1:		%{realname}-open.gz.patch
-Patch2:		%{realname}-DESTDIR.patch
+# Source0-md5:	7740a8ec23878a2f50120e1faa2730f2
+Patch0:		%{realname}-amfix.patch
+Patch1:		%{realname}-man_fixes.patch
+Patch2:		%{realname}-open.gz.patch
+#Patch3:		%{realname}-largefile.patch
+Patch4:		%{realname}-zlib.patch
 URL:		http://xmlsoft.org/
 BuildRequires:	autoconf >= 2.2
-BuildRequires:	automake
+BuildRequires:	automake >= 1.4
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-zlib
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	sed >= 4.0
-Requires:	crossmingw32-zlib
+Requires:	crossmingw32-zlib >= 1.2.3.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -34,6 +36,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
+%define		filterout_ld		-Wl,--as-needed -Wl,-z,relro -Wl,-z,combreloc
 
 %description
 This library allows you to manipulate XML files.
@@ -75,6 +78,8 @@ Biblioteka DLL libxml2 dla Windows.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+#patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}
