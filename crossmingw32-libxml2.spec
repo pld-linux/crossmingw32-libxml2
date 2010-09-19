@@ -1,6 +1,6 @@
 %define		realname   libxml2
-Summary:	libXML library - cross Mingw32 version
-Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla Mingw32
+Summary:	libXML library - cross MinGW32 version
+Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
 Version:	2.7.7
 Release:	1
@@ -48,16 +48,16 @@ Biblioteka libxml2 umożliwia manipulowanie zawartością plików XML.
 Ten pakiet zawiera wersję skrośną dla Win32.
 
 %package static
-Summary:	Static libxml2 library (cross mingw32 version)
-Summary(pl.UTF-8):	Statyczna biblioteka libxml2 (wersja skrośna mingw32)
+Summary:	Static libxml2 library (cross MinGW32 version)
+Summary(pl.UTF-8):	Statyczna biblioteka libxml2 (wersja skrośna MinGW32)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description static
-Static libxml2 library (cross mingw32 version).
+Static libxml2 library (cross MinGW32 version).
 
 %description static -l pl.UTF-8
-Statyczna biblioteka libxml2 (wersja skrośna mingw32).
+Statyczna biblioteka libxml2 (wersja skrośna MinGW32).
 
 %package dll
 Summary:	DLL libxml2 library for Windows
