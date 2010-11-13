@@ -1,0 +1,11 @@
+--- libxml2-2.7.8/configure.in.orig	2010-11-04 18:01:19.000000000 +0100
++++ libxml2-2.7.8/configure.in	2010-11-13 19:34:41.607099099 +0100
+@@ -84,7 +84,7 @@
+   esac
+ fi
+ AC_SUBST(VERSION_SCRIPT_FLAGS)
+-AM_CONDITIONAL([USE_VERSION_SCRIPT], [test -z "$VERSION_SCRIPT_FLAGS"])
++AM_CONDITIONAL([USE_VERSION_SCRIPT], [test -n "$VERSION_SCRIPT_FLAGS"])
+ 
+ dnl
+ dnl We process the AC_ARG_WITH first so that later we can modify

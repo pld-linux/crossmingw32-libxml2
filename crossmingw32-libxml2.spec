@@ -2,17 +2,18 @@
 Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
-Version:	2.7.7
+Version:	2.7.8
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
 Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
-# Source0-md5:	9abc9959823ca9ff904f1fbcf21df066
+# Source0-md5:	8127a65e8c3b08856093099b52599c86
 Patch0:		%{realname}-amfix.patch
 Patch1:		%{realname}-man_fixes.patch
 Patch2:		%{realname}-open.gz.patch
 Patch3:		%{realname}-largefile.patch
+Patch4:		%{realname}-version-script.patch
 URL:		http://xmlsoft.org/
 BuildRequires:	autoconf >= 2.2
 BuildRequires:	automake >= 1.4
@@ -78,6 +79,7 @@ Biblioteka DLL libxml2 dla Windows.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}

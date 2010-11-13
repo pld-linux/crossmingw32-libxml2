@@ -60,14 +60,3 @@ diff -Nur libxml2-2.6.17.orig/Makefile.am libxml2-2.6.17/Makefile.am
  CVS_EXTRA_DIST=
  EXTRA_DIST = xml2-config.in xml2Conf.sh.in libxml.spec.in libxml2.spec \
               libxml.m4 Copyright check-xml-test-suite.py gentest.py \
-diff -Nur libxml2-2.6.17.orig/include/libxml/Makefile.am libxml2-2.6.17/include/libxml/Makefile.am
---- libxml2-2.6.17.orig/include/libxml/Makefile.am	2005-01-04 15:55:45.000000000 +0100
-+++ libxml2-2.6.17/include/libxml/Makefile.am	2005-01-18 12:08:45.978527448 +0100
-@@ -50,7 +50,4 @@
- 		pattern.h \
- 		xmlsave.h
- 
--install-exec-hook:
--	$(mkinstalldirs) $(DESTDIR)$(xmlincdir)
--
- EXTRA_DIST = xmlversion.h.in
