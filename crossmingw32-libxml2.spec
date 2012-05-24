@@ -2,20 +2,18 @@
 Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
-Version:	2.7.8
+Version:	2.8.0
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
 Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
-# Source0-md5:	8127a65e8c3b08856093099b52599c86
-Patch0:		%{realname}-amfix.patch
-Patch1:		%{realname}-man_fixes.patch
-Patch2:		%{realname}-open.gz.patch
-Patch3:		%{realname}-largefile.patch
-Patch4:		%{realname}-version-script.patch
+# Source0-md5:	c62106f02ee00b6437f0fb9d370c1093
+Patch0:		%{realname}-man_fixes.patch
+Patch1:		%{realname}-open.gz.patch
+Patch2:		%{realname}-largefile.patch
 URL:		http://xmlsoft.org/
-BuildRequires:	autoconf >= 2.2
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.4
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-zlib >= 1.2.4-3
@@ -78,8 +76,6 @@ Biblioteka DLL libxml2 dla Windows.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 %{__libtoolize}
@@ -90,6 +86,7 @@ Biblioteka DLL libxml2 dla Windows.
 %configure \
 	--target=%{target} \
 	--host=%{target} \
+	--disable-silent-rules \
 	--without-python
 
 %{__make}
@@ -108,7 +105,7 @@ mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
 %endif
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/{aclocal,doc,gtk-doc,man}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/{aclocal,doc,gtk-doc,man}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
