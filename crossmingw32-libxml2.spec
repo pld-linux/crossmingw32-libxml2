@@ -34,7 +34,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
-%define		filterout_ld		-Wl,--as-needed -Wl,-z,relro -Wl,-z,combreloc
+
+%ifnarch %{ix86}
+# arch-specific flags (like alpha's -mieee) are not valid for i386 gcc
+%define		optflags	-O2
+%endif
+# -z options are invalid for mingw linker, most of -f options are Linux-specific
+%define		filterout_ld	-Wl,--as-needed -Wl,-z,relro -Wl,-z,combreloc
+%define		filterout_c	-f[-a-z0-9=]*
 
 %description
 This library allows you to manipulate XML files.
