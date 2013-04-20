@@ -3,7 +3,7 @@ Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
 Version:	2.9.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
@@ -34,6 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
+%define		__pkgconfig_provides	%{nil}
 
 %ifnarch %{ix86}
 # arch-specific flags (like alpha's -mieee) are not valid for i386 gcc
