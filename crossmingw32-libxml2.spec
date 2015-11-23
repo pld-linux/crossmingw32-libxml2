@@ -17,9 +17,11 @@ BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1.4
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-zlib >= 1.2.4-3
+BuildRequires:	crossmingw32-xz
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	sed >= 4.0
 Requires:	crossmingw32-zlib >= 1.2.4-3
+Requires:	crossmingw32-xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -72,6 +74,7 @@ Summary:	DLL libxml2 library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL libxml2 dla Windows
 Group:		Applications/Emulators
 Requires:	crossmingw32-zlib-dll >= 1.2.4-3
+Requires:	crossmingw32-xz-dll
 Requires:	wine
 
 %description dll
