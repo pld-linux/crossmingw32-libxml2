@@ -2,13 +2,13 @@
 Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
-Version:	2.9.4
+Version:	2.9.8
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.6/%{name}-%{version}.tar.bz2
 Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
-# Source0-md5:	ae249165c173b1ff386ee8ad676815f5
+# Source0-md5:	b786e353e2aa1b872d70d5d1ca0c740d
 Patch0:		%{realname}-man_fixes.patch
 Patch1:		%{realname}-open.gz.patch
 Patch2:		%{realname}-largefile.patch
@@ -95,6 +95,8 @@ Biblioteka DLL libxml2 dla Windows.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# MinGW32 headers don't define this
+CPPFLAGS="%{rpmcppflags} -D_WINSOCKAPI_"
 %configure \
 	--target=%{target} \
 	--host=%{target} \
@@ -110,13 +112,16 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_dlldir}
-mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
+%{__mv} $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
 %if 0%{!?debug:1}
 %{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
 %endif
 
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/{*.exe,xml2-config}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/xml2Conf.sh
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/cmake
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/{aclocal,doc,gtk-doc,man}
 
 %clean
