@@ -37,5 +37,5 @@ diff -ur libxml2-2.4.20/xmlIO.c libxml2-2.4.20-/xmlIO.c
 +	}
 +    }
  
-     fd = gzopen(path, "rb");
-     return((void *) fd);
+ #if defined(_WIN32) || defined (__DJGPP__) && !defined (__CYGWIN__)
+     fd = xmlWrapGzOpenUtf8(path, "rb");
