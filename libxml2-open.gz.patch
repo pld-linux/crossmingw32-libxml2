@@ -1,41 +1,38 @@
-diff -ur libxml2-2.4.20/xmlIO.c libxml2-2.4.20-/xmlIO.c
---- libxml2-2.4.20/xmlIO.c	Wed Mar 27 04:35:12 2002
-+++ libxml2-2.4.20-/xmlIO.c	Thu May 23 20:35:12 2002
-@@ -465,8 +465,35 @@
+--- libxml2-2.10.0/xmlIO.c.orig	2022-08-18 16:29:32.843322082 +0200
++++ libxml2-2.10.0/xmlIO.c	2022-08-18 16:32:12.985787850 +0200
+@@ -1115,8 +1115,33 @@ xmlGzfileOpen_real (const char *filename
  
      if (path == NULL)
  	return(NULL);
 -    if (!xmlCheckFilename(path))
 -        return(NULL);
-+	
 +    if (!xmlCheckFilename(path)) {
-+        /* If we cannot open `foo.xml', we try `foo.xml.gz'. However we i
++	/* If we cannot open `foo.xml', we try `foo.xml.gz'. However we i
 +	 * append .gz only if filename doesn't alreay end with .gz. */
-+        if (strlen(path) < 3 || strcmp(path + strlen(path) - 3, ".gz") != 0) {
-+            char *gz_filename = xmlMalloc(strlen(path) + 4);
++	if (strlen(path) < 3 || strcmp(path + strlen(path) - 3, ".gz") != 0) {
++	    char *gz_filename = xmlMalloc(strlen(path) + 4);
 +
 +	    if (gz_filename == NULL) {
 +	        xmlGenericError(xmlGenericErrorContext,
 +			        "xmlGzfileOpen:  %s\n",
 +			        "Failure allocating buffer for filename.");
 +	        return NULL;
-+	     }
-+	
-+             strcpy(gz_filename, path);
-+	     strcat(gz_filename, ".gz");
++	    }
 +
-+	     fd = NULL;
-+	     
-+	     if (xmlCheckFilename(gz_filename))
++	    strcpy(gz_filename, path);
++	    strcat(gz_filename, ".gz");
++
++	    fd = NULL;
++
++	    if (xmlCheckFilename(gz_filename))
 +		fd = gzopen(gz_filename, "rb");
-+	         
-+	     xmlFree(gz_filename);
++
++	    xmlFree(gz_filename);
 +	     
-+             return((void *) fd);
-+	} else {
++	    return((void *) fd);
++	} else
 +	    return NULL;
-+	}
 +    }
  
- #if defined(_WIN32) || defined (__DJGPP__) && !defined (__CYGWIN__)
+ #if defined(_WIN32)
      fd = xmlWrapGzOpenUtf8(path, "rb");
