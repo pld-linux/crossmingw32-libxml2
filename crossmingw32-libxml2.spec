@@ -2,13 +2,13 @@
 Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
-Version:	2.12.7
+Version:	2.12.8
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 #Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
 Source0:	https://download.gnome.org/sources/libxml2/2.12/%{realname}-%{version}.tar.xz
-# Source0-md5:	35a058566c54bdd07cba9d749868d64e
+# Source0-md5:	121a262ac4e4b4110a1104ac33676903
 Patch0:		%{realname}-open.gz.patch
 Patch1:		%{realname}-largefile.patch
 URL:		http://xmlsoft.org/
