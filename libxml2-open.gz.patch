@@ -1,38 +1,32 @@
---- libxml2-2.10.0/xmlIO.c.orig	2022-08-18 16:29:32.843322082 +0200
-+++ libxml2-2.10.0/xmlIO.c	2022-08-18 16:32:12.985787850 +0200
-@@ -1115,8 +1115,33 @@ xmlGzfileOpen_real (const char *filename
+--- libxml2-2.13.0/xmlIO.c.orig	2024-06-14 12:32:12.257784372 +0200
++++ libxml2-2.13.0/xmlIO.c	2024-06-14 19:23:06.355299914 +0200
+@@ -547,6 +547,29 @@
+     fd = open(filename, flags, 0777);
+ #endif /* WIN32 */
  
-     if (path == NULL)
- 	return(NULL);
--    if (!xmlCheckFilename(path))
--        return(NULL);
-+    if (!xmlCheckFilename(path)) {
-+	/* If we cannot open `foo.xml', we try `foo.xml.gz'. However we i
-+	 * append .gz only if filename doesn't alreay end with .gz. */
-+	if (strlen(path) < 3 || strcmp(path + strlen(path) - 3, ".gz") != 0) {
-+	    char *gz_filename = xmlMalloc(strlen(path) + 4);
++#ifdef LIBXML_ZLIB_ENABLED
++    if (fd < 0 && errno == ENOENT) {
++        /* If we cannot open `foo.xml', we try `foo.xml.gz'. However we i
++         * append .gz only if filename doesn't alreay end with .gz. */
++        if (strlen(filename) < 3 || strcmp(filename + strlen(filename) - 3, ".gz") != 0) {
++            char *gz_filename = xmlMalloc(strlen(filename) + 4);
++            int gz_fd;
 +
-+	    if (gz_filename == NULL) {
-+	        xmlGenericError(xmlGenericErrorContext,
-+			        "xmlGzfileOpen:  %s\n",
-+			        "Failure allocating buffer for filename.");
-+	        return NULL;
-+	    }
++            if (gz_filename != NULL) {
++                strcpy(gz_filename, filename);
++                strcat(gz_filename, ".gz");
++            }
 +
-+	    strcpy(gz_filename, path);
-+	    strcat(gz_filename, ".gz");
++            gz_fd = open(gz_filename, flags, 0777);
 +
-+	    fd = NULL;
++            if (gz_fd >= 0)
++                fd = gz_fd;
 +
-+	    if (xmlCheckFilename(gz_filename))
-+		fd = gzopen(gz_filename, "rb");
-+
-+	    xmlFree(gz_filename);
-+	     
-+	    return((void *) fd);
-+	} else
-+	    return NULL;
++            xmlFree(gz_filename);
++        }
 +    }
- 
- #if defined(_WIN32)
-     fd = xmlWrapGzOpenUtf8(path, "rb");
++
++#endif /* LIBXML_ZLIB_ENABLED */
+     if (fd < 0) {
+         /*
+          * Windows and possibly other platforms return EINVAL
