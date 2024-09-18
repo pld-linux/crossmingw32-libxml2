@@ -1,7 +1,7 @@
 --- libxml2-2.13.0/xmlIO.c.orig	2024-06-14 12:32:12.257784372 +0200
 +++ libxml2-2.13.0/xmlIO.c	2024-06-14 19:23:06.355299914 +0200
 @@ -547,6 +547,29 @@
-     fd = open(filename, flags, 0777);
+     fd = open(filename, flags, 0666);
  #endif /* WIN32 */
  
 +#ifdef LIBXML_ZLIB_ENABLED
