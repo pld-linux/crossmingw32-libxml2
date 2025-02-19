@@ -1,14 +1,14 @@
---- libxml2-2.13.1/dict.c.orig	2024-06-12 13:17:43.000000000 +0200
-+++ libxml2-2.13.1/dict.c	2024-06-19 21:40:34.925985581 +0200
+--- libxml2-2.13.6/dict.c.orig	2025-02-18 14:57:38.000000000 +0100
++++ libxml2-2.13.6/dict.c	2025-02-19 18:48:15.096195473 +0100
 @@ -927,7 +927,6 @@ xmlDictQLookup(xmlDictPtr dict, const xm
  #ifdef _WIN32
    #define WIN32_LEAN_AND_MEAN
    #include <windows.h>
 -  #include <bcrypt.h>
- #elif defined(HAVE_GETENTROPY)
-   #ifdef HAVE_UNISTD_H
-     #include <unistd.h>
-@@ -954,7 +953,7 @@ xmlInitRandom(void) {
+ #else
+   #if defined(HAVE_GETENTROPY)
+     #ifdef HAVE_UNISTD_H
+@@ -955,7 +954,7 @@ xmlInitRandom(void) {
      xmlInitMutex(&xmlRngMutex);
  
      {
