@@ -3,7 +3,7 @@ Summary:	libXML library - cross MinGW32 version
 Summary(pl.UTF-8):	Biblioteka libXML wersja 2 - wersja skrośna dla MinGW32
 Name:		crossmingw32-%{realname}
 Version:	2.13.6
-Release:	3
+Release:	4
 License:	MIT
 Group:		Development/Libraries
 #Source0:	ftp://xmlsoft.org/libxml2/%{realname}-%{version}.tar.gz
@@ -17,6 +17,7 @@ BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.16.3
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-zlib >= 1.2.4-3
+BuildRequires:	crossmingw32-pthreads-w32
 BuildRequires:	crossmingw32-xz
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	sed >= 4.0
@@ -32,9 +33,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
+%define		_docdir			%{_sysprefix}/share/doc
 %define		_libdir			%{_prefix}/lib
 %define		_pkgconfigdir		%{_prefix}/lib/pkgconfig
-%define		_defaultdocdir		%{_prefix}/share/doc
 %define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
