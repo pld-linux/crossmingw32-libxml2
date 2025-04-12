@@ -1,0 +1,27 @@
+Fix check for absolute path.
+Before that xmlNormalizePath("../xml/../../../../libmm-glib/generated/mm-gdbus-doc-org.freedesktop.ModemManager1.Modem.Simple.xml")
+returned "../../libmm-glib/generated/mm-gdbus-doc-org.freedesktop.ModemManager1.Modem.Simple.xml"
+instead of "../../../../libmm-glib/generated/mm-gdbus-doc-org.freedesktop.ModemManager1.Modem.Simple.xml"
+--- libxml2-2.13.7/uri.c.orig	2025-04-12 07:07:38.185693733 +0200
++++ libxml2-2.13.7/uri.c	2025-04-12 07:43:59.817208154 +0200
+@@ -1560,7 +1560,7 @@ xmlNormalizePath(char *path, int isFile)
+                         break;
+                     cur += 3;
+                     continue;
+-                } else if (out[0] == '/') {
++                } else if (path[0] == '/') {
+                     /* Ignore extraneous ".." in absolute paths */
+                     if (cur[2] == 0)
+                         break;
+diff -Nur libxml2-2.13.7/result.orig/XInclude/base.xml libxml2-2.13.7/result/XInclude/base.xml
+--- libxml2-2.13.7/result.orig/XInclude/base.xml	2025-03-27 14:37:41.000000000 +0100
++++ libxml2-2.13.7/result/XInclude/base.xml	2025-04-12 08:04:50.813764257 +0200
+@@ -6,7 +6,7 @@
+         ents/one/two2
+     </elem><elem xml:base="../../ents/one2/two">
+         ents/one2/two
+-    </elem><elem xml:base="two/three/four">
++    </elem><elem xml:base="../../../docs/one/two/three/four">
+         docs/one/two/three/four
+     </elem>
+ </doc>
